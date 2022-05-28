@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const LineString = require('../models/linestring') // model require
+const MultiLine = require('../models/multiline') // model require
 const cors = require('cors');
 
 router.use(cors({
@@ -9,18 +9,18 @@ router.use(cors({
 }));
 
 // API 1.1
-// GET - /linestrings
+// GET - /multiline
 router.get('/', function (req, res) {
-    LineString.find({}, function (err, lineStrings) {
+    MultiLine.find({}, function (err, multilines) {
         if (err) return res.status(500).send({ error: err });
-        const resultList = lineStrings.map(x => {
-            return {
-                name: x.name,
-                coordinates: x.geo.coordinates,
-                category: x.category
-            }
-        })
-        res.json({ result: resultList });
+        // const resultList = lineStrings.map(x => {
+        //     return {
+        //         name: x.name,
+        //         coordinates: x.geo.coordinates,
+        //         category: x.category
+        //     }
+        // })
+        res.json({ result: multilines });
     });
 });
 
@@ -30,16 +30,15 @@ router.post('/', function (req, res) {
     const name = req.body.name;
     const coordinates = req.body.coordinates;
     const category = req.body.category;
-
-    LineString.create({
+    console.log(coordinates)
+    MultiLine.create({
         name: name,
         geo: {
             coordinates: coordinates,
-        },
-        category: category
-    }, function (err, lineString) {
+        }
+    }, function (err, multiline) {
         if (err) return res.status(500).send({ error: err });
-        res.json({ result: lineString });
+        res.json({ result: multiline });
     })
 });
 

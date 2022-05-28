@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const markerRoute = require('./routes/marker_index');
 const lineStringRoute = require('./routes/line_index');
+const multiLineRoute = require('./routes/multi_index')
 
 // [ CONFIGURE mongoose ]
 
@@ -14,8 +15,8 @@ const lineStringRoute = require('./routes/line_index');
 var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function () {
-  // CONNECTED TO MONGODB SERVER
-  console.log("Connected to mongod server");
+    // CONNECTED TO MONGODB SERVER
+    console.log("Connected to mongod server");
 });
 
 mongoose.connect('mongodb://localhost/mongodb_tutorial');
@@ -30,9 +31,9 @@ var port = 3000;
 
 // [RUN SERVER]
 app.listen(port, () => {
-  console.log("Express server has started on port " + port)
+    console.log("Express server has started on port " + port)
 });
 
 app.use('/markers', markerRoute);
 app.use('/linestrings', lineStringRoute);
-
+app.use('/multiline', multiLineRoute);

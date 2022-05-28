@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Marker = require('../models/marker') // model require
+const cors = require('cors');
 
+router.use(cors({
+    origin: '*',
+    credentials: 'true'
+}));
 
 // API 1.1
 // 모든 마커 정보 조회 API
