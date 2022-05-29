@@ -17,10 +17,13 @@ router.get('/', function (req, res) {
         const resultList = markers.map(x => {
             return {
                 name: x.name,
-                coordinates: x.coordinates,
+                coordinates: {
+                    lon: x.coordinates[0],
+                    lat: x.coordinates[1]
+                },
                 category: x.category
             }
-        })
+        });
         res.json({ result: resultList });
     });
 });
@@ -47,10 +50,23 @@ router.get('/near', function (req, res) {
                 distanceField: "dist.calculated",
                 spherical: true
             }
-        }
+        },
+        { $limit: 5 }
     ], function (err, markers) {
         if (err) return res.status(500).send({ error: err });
-        res.json(markers);
+        const resultList = markers.map(x => {
+            return {
+                name: x.name,
+                type: x.type,
+                coordinates: {
+                    lon: x.coordinates[0],
+                    lat: x.coordinates[1]
+                },
+                category: x.category,
+                dist: x.dist.calculated
+            }
+        });
+        res.json({ result: resultList });
     });
 });
 
@@ -71,7 +87,18 @@ router.get('/within/radius', function (req, res) {
         }
     }, function (err, markers) {
         if (err) return res.status(500).send({ error: err });
-        res.json({ result: markers });
+        const resultList = markers.map(x => {
+            return {
+                name: x.name,
+                type: x.type,
+                coordinates: {
+                    lon: x.coordinates[0],
+                    lat: x.coordinates[1]
+                },
+                category: x.category,
+            }
+        });
+        res.json({ result: resultList });
     });
 });
 
@@ -94,7 +121,18 @@ router.get('/within/box', function (req, res) {
         }
     }, function (err, markers) {
         if (err) return res.status(500).send({ error: err });
-        res.json({ result: markers });
+        const resultList = markers.map(x => {
+            return {
+                name: x.name,
+                type: x.type,
+                coordinates: {
+                    lon: x.coordinates[0],
+                    lat: x.coordinates[1]
+                },
+                category: x.category,
+            }
+        });
+        res.json({ result: resultList });
     });
 });
 

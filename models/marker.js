@@ -4,8 +4,7 @@ const { Schema } = mongoose;
 const markerSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     type: {
         type: String,
@@ -13,8 +12,8 @@ const markerSchema = new Schema({
     },
     coordinates: {
         type: [Number],
-        required: true,
-        index: true
+        required: true
+        //index: true
     },
     category: {
         type: String,
@@ -25,5 +24,5 @@ const markerSchema = new Schema({
 markerSchema.index({ coordinates: '2dsphere' });
 
 
-const Marker = mongoose.model('Maker', markerSchema);
+const Marker = mongoose.model('Marker', markerSchema);
 module.exports = Marker;

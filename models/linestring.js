@@ -4,8 +4,7 @@ const { Schema } = mongoose;
 const linestringSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     geo: {
         type: {
@@ -14,8 +13,8 @@ const linestringSchema = new Schema({
         },
         coordinates: {
             type: Array,
-            required: true,
-            index: true
+            required: true
+            //index: true
         }
     },
     category: {
