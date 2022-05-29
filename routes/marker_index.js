@@ -18,8 +18,8 @@ router.get('/', function (req, res) {
             return {
                 name: x.name,
                 coordinates: {
-                    lon: x.coordinates[0],
-                    lat: x.coordinates[1]
+                    lat: x.coordinates[1],
+                    lon: x.coordinates[0]
                 },
                 category: x.category
             }
@@ -59,8 +59,8 @@ router.get('/near', function (req, res) {
                 name: x.name,
                 type: x.type,
                 coordinates: {
-                    lon: x.coordinates[0],
-                    lat: x.coordinates[1]
+                    lat: x.coordinates[1],
+                    lon: x.coordinates[0]
                 },
                 category: x.category,
                 dist: x.dist.calculated
@@ -92,8 +92,8 @@ router.get('/within/radius', function (req, res) {
                 name: x.name,
                 type: x.type,
                 coordinates: {
-                    lon: x.coordinates[0],
-                    lat: x.coordinates[1]
+                    lat: x.coordinates[1],
+                    lon: x.coordinates[0]
                 },
                 category: x.category,
             }
@@ -126,8 +126,8 @@ router.get('/within/box', function (req, res) {
                 name: x.name,
                 type: x.type,
                 coordinates: {
-                    lon: x.coordinates[0],
-                    lat: x.coordinates[1]
+                    lat: x.coordinates[1],
+                    lon: x.coordinates[0]
                 },
                 category: x.category,
             }

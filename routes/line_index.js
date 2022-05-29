@@ -16,7 +16,16 @@ router.get('/', function (req, res) {
         const resultList = lineStrings.map(x => {
             return {
                 name: x.name,
-                coordinates: x.geo.coordinates,
+                coordinates: [
+                    {
+                        lat: x.geo.coordinates[0][1],
+                        lon: x.geo.coordinates[0][0]
+                    },
+                    {
+                        lat: x.geo.coordinates[1][1],
+                        lon: x.geo.coordinates[1][0]
+                    }
+                ],
                 category: x.category
             }
         })
