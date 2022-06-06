@@ -14,7 +14,7 @@ const linestringSchema = new Schema({
         coordinates: {
             type: Array,
             required: true
-            //index: true
+            // index: true
         }
     },
     category: {
